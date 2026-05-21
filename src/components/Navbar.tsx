@@ -68,11 +68,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-[52px] left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-300 rounded-2xl ${
-        scrolled
+      className={`fixed top-[52px] left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-300 rounded-2xl ${scrolled
           ? "bg-white/95 border border-zinc-200 shadow-lg py-3 backdrop-blur-md"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -81,22 +80,20 @@ export default function Navbar() {
             onClick={() => scrollToSection("home")}
             className="flex items-center space-x-2 cursor-pointer group"
           >
-            <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 group-hover:border-accent-blue/50 transition-colors duration-300 p-1.5">
-              <img 
-                src="/images/favicon.svg" 
-                alt="Precision Logo" 
-                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+            <div className="relative flex items-center justify-center w-9 h-9 transition-transform duration-300 group-hover:scale-110">
+              <img
+                src="/images/favicon.png"
+                alt="Precision Logo"
+                className="w-full h-full object-contain"
               />
             </div>
             <div>
-              <span className={`font-serif text-lg font-bold tracking-tight block transition-colors ${
-                scrolled ? "text-dark-slate" : "text-white"
-              }`}>
+              <span className={`font-serif text-lg font-bold tracking-tight block transition-colors ${scrolled ? "text-dark-slate" : "text-white"
+                }`}>
                 Precision
               </span>
-              <span className={`font-mono text-[8px] uppercase tracking-widest block -mt-1 transition-colors ${
-                scrolled ? "text-zinc-500" : "text-zinc-300"
-              }`}>
+              <span className={`font-mono text-[8px] uppercase tracking-widest block -mt-1 transition-colors ${scrolled ? "text-zinc-500" : "text-zinc-300"
+                }`}>
                 Lawn & Jet-Wash
               </span>
             </div>
@@ -108,15 +105,14 @@ export default function Navbar() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`font-medium text-xs tracking-wider transition-colors uppercase cursor-pointer relative py-1.5 px-3 rounded-lg ${
-                  scrolled
+                className={`font-medium text-xs tracking-wider transition-colors uppercase cursor-pointer relative py-1.5 px-3 rounded-lg ${scrolled
                     ? activeSection === link.id
                       ? "text-primary bg-primary/5 font-bold"
                       : "text-zinc-600 hover:text-primary hover:bg-zinc-50"
                     : activeSection === link.id
-                    ? "text-white bg-white/10 font-bold"
-                    : "text-cream/80 hover:text-white hover:bg-white/5"
-                }`}
+                      ? "text-white bg-white/10 font-bold"
+                      : "text-cream/80 hover:text-white hover:bg-white/5"
+                  }`}
               >
                 {link.label}
               </button>
@@ -127,11 +123,10 @@ export default function Navbar() {
           <div className="hidden md:block">
             <button
               onClick={() => scrollToSection("contact")}
-              className={`inline-flex items-center space-x-2 font-medium text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-sm hover:shadow group transition-all duration-300 cursor-pointer active:scale-98 ${
-                scrolled
+              className={`inline-flex items-center space-x-2 font-medium text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-sm hover:shadow group transition-all duration-300 cursor-pointer active:scale-98 ${scrolled
                   ? "bg-primary hover:bg-primary-light text-white"
                   : "bg-white hover:bg-cream text-primary"
-              }`}
+                }`}
             >
               <span>Get a Free Quote</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -142,9 +137,8 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-xl focus:outline-none cursor-pointer ${
-                scrolled ? "text-dark-slate hover:bg-zinc-100" : "text-cream hover:bg-white/10"
-              }`}
+              className={`inline-flex items-center justify-center p-2 rounded-xl focus:outline-none cursor-pointer ${scrolled ? "text-dark-slate hover:bg-zinc-100" : "text-cream hover:bg-white/10"
+                }`}
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -167,11 +161,10 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`w-full text-left block px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${
-                    activeSection === link.id
+                  className={`w-full text-left block px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${activeSection === link.id
                       ? "text-primary bg-primary/5"
                       : "text-zinc-650 hover:bg-zinc-50"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </button>

@@ -5,21 +5,21 @@ export default function Testimonials() {
   const reviews = [
     {
       name: "Marcus V.",
-      location: "Bellevue, WA",
+      location: "Salthill, Galway",
       service: "Lawn Cultivation & Edge Lining",
       rating: 5,
       quote: "Our lawn has never looked this crisp. The team at Precision uses actual mechanical edge guides, not just hand-trimmers. It completely changed the clean lines around our flower beds.",
     },
     {
       name: "Sarah L.",
-      location: "Redmond, WA",
+      location: "Oranmore, Galway",
       service: "Driveway & Patio Restoration",
       rating: 5,
       quote: "Years of mildew and dark stains on our brick patio disappeared in a single afternoon. The pressure washing was deep but completely safe for our garden plants. Highly recommend!",
     },
     {
       name: "David K.",
-      location: "Kirkland, WA",
+      location: "Barna, Galway",
       service: "Hedge Trimming & Pruning",
       rating: 5,
       quote: "Meticulous work. They pruned our boxwood hedges to absolute straightness and spent an extra 30 minutes cleaning up every last leaf clipping. Real professionals.",
@@ -36,7 +36,7 @@ export default function Testimonials() {
             Client Voices
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
-            Trusted by Eastside Homeowners
+            Trusted by Galway Homeowners
           </h2>
           <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
             Real homeowners share their experiences with our precision-based garden management and power washing restorations.

@@ -184,10 +184,10 @@ export default function ContactForm() {
                   Our Service Coordinates
                 </span>
                 <h3 className="font-serif text-2xl font-bold mt-2 mb-4 tracking-tight">
-                  Seattle Eastside Base
+                  Galway Base
                 </h3>
                 <p className="text-xs text-zinc-300 font-light leading-relaxed">
-                  We service residential properties in Bellevue, Redmond, Kirkland, Mercer Island, Woodinville, and Issaquah.
+                  We service residential properties in Galway City, Salthill, Oranmore, Barna, Clarinbridge, and Athenry.
                 </p>
               </div>
 
@@ -204,18 +204,18 @@ export default function ContactForm() {
                 <div className="absolute top-1/4 left-1/4 flex flex-col items-center">
                   <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping absolute" />
                   <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full relative" />
-                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Bellevue Hub</span>
+                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Salthill Hub</span>
                 </div>
 
                 <div className="absolute top-1/2 left-2/3 flex flex-col items-center">
                   <span className="w-2.5 h-2.5 bg-sky-400 rounded-full animate-ping absolute" />
                   <span className="w-2.5 h-2.5 bg-sky-400 rounded-full relative" />
-                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Redmond Hub</span>
+                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Oranmore Hub</span>
                 </div>
 
                 <div className="absolute bottom-1/4 left-1/2 flex flex-col items-center">
                   <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full relative" />
-                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Kirkland Hub</span>
+                  <span className="font-mono text-[8px] tracking-wider text-zinc-300 mt-1 uppercase">Barna Hub</span>
                 </div>
               </div>
 
@@ -228,7 +228,7 @@ export default function ContactForm() {
                   <div>
                     <h4 className="font-mono text-[9px] uppercase tracking-wider text-zinc-400">Call / Text</h4>
                     <p className="text-base font-bold text-white mt-0.5 hover:text-emerald-400 transition-colors">
-                      <a href="tel:+14255550190">+1 (425) 555-0190</a>
+                      <a href="tel:+353915550190">+353 (91) 555 0190</a>
                     </p>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export default function ContactForm() {
                         type="tel"
                         name="phone"
                         id="phone"
-                        placeholder="(425) 555-0190"
+                        placeholder="+353 (91) 555 0190"
                         value={formData.phone}
                         onChange={handleInputChange}
                         className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${

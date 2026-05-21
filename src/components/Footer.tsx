@@ -33,18 +33,18 @@ export default function Footer() {
     <footer className="bg-dark-slate text-cream border-t border-primary-light/10 relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-white/5 pb-12 mb-12">
-          
+
           {/* Column 1: Logo and Coordinates */}
           <div className="md:col-span-5 flex flex-col items-start text-left space-y-4">
             <div
               onClick={() => scrollToSection("home")}
               className="flex items-center space-x-2 cursor-pointer group"
             >
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 border border-white/20 group-hover:border-accent-blue/50 transition-colors duration-300 p-1.5">
-                <img 
-                  src="/images/favicon.svg" 
-                  alt="Precision Logo" 
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+              <div className="relative flex items-center justify-center w-10 h-10 transition-transform duration-300 group-hover:scale-110">
+                <img
+                  src="/images/favicon.png"
+                  alt="Precision Logo"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div>
@@ -58,7 +58,7 @@ export default function Footer() {
             </div>
 
             <p className="text-[#f5f0e8]/70 font-light text-xs sm:text-sm max-w-sm leading-relaxed">
-              Serving Bellevue, Redmond, Kirkland, and Seattle Eastside properties. We combine biological turf trimming with deep pressure washing restorations.
+              Serving Galway City, Oranmore, Salthill, Barna, and surrounding Co. Galway properties. We combine biological turf trimming with deep pressure washing restorations.
             </p>
 
             <div className="flex space-x-3 pt-2">
