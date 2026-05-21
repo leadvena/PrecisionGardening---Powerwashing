@@ -308,7 +308,7 @@ export default function ContactForm() {
                         type="text"
                         name="fullName"
                         id="fullName"
-                        placeholder="John Doe"
+                        placeholder="Sarah Jenkins"
                         value={formData.fullName}
                         onChange={handleInputChange}
                         className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${
@@ -319,7 +319,7 @@ export default function ContactForm() {
                       />
                       {formErrors.fullName && (
                         <p className="text-xs text-rose-500 font-medium flex items-center mt-1.5">
-                          <AlertCircle className="w-3.5 h-3.5 mr-1" />
+                           <AlertCircle className="w-3.5 h-3.5 mr-1" />
                           {formErrors.fullName}
                         </p>
                       )}
@@ -362,7 +362,7 @@ export default function ContactForm() {
                         type="email"
                         name="email"
                         id="email"
-                        placeholder="john@example.com"
+                        placeholder="sarah.jenkins@outlook.com"
                         value={formData.email}
                         onChange={handleInputChange}
                         className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Leaf, Droplet, ArrowUp, Instagram, Facebook, Sparkles } from "lucide-react";
+import { ArrowUp, Instagram, Facebook, Sparkles } from "lucide-react";
 
 export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
@@ -40,9 +40,12 @@ export default function Footer() {
               onClick={() => scrollToSection("home")}
               className="flex items-center space-x-2 cursor-pointer group"
             >
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 border border-white/20 group-hover:border-accent-blue/50 transition-colors duration-300">
-                <Leaf className="w-5 h-5 text-emerald-400 absolute" />
-                <Droplet className="w-4 h-4 text-accent-blue absolute translate-x-2 translate-y-1" />
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 border border-white/20 group-hover:border-accent-blue/50 transition-colors duration-300 p-1.5">
+                <img 
+                  src="/images/favicon.svg" 
+                  alt="Precision Logo" 
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                />
               </div>
               <div>
                 <span className="font-serif text-xl font-bold tracking-tight text-white block">
