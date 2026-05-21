@@ -1,12 +1,13 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { Resend } from "resend";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS headers on every response
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   // CORS Preflight
   if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     return res.status(200).end();
   }
 
@@ -24,6 +25,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (resendApiKey) {
     try {
+      // Dynamic import prevents a module-level crash on Node 24
+      // if the package has compatibility issues at startup
+      const { Resend } = await import("resend");
       const resend = new Resend(resendApiKey);
 
       // Email to Admin
@@ -83,6 +87,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     } catch (err) {
       console.error("Failed to send quote emails via Resend:", err);
+      // Intentionally not returning 500 — the submission itself succeeded
     }
   }
 
