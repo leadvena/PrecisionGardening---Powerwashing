@@ -48,78 +48,68 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const resend = new Resend(resendApiKey);
 
-      // Email to Admin
+      const siteUrl = process.env.SITE_URL || "https://precision-gardening-powerwashing.vercel.app";
+
       await resend.emails.send({
         from: "Precision Bookings <onboarding@resend.dev>",
         to: adminEmail,
-        subject: `New Booking Requested: ${referenceId} - ${fullName}`,
+        subject: `📅 New Booking: ${referenceId} — ${fullName}`,
         html: `
           <div style="font-family: sans-serif; padding: 24px; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
-            <h2 style="font-size: 18px; font-weight: bold; color: #1e6fa8; margin-bottom: 16px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">New Service Booking Logged</h2>
-            <p style="font-size: 14px; color: #4b5563;">A customer has requested a specific date and time slot. Approve this booking in the Admin Dashboard.</p>
-            <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px;">
+            <div style="background-color: #1b3a2d; padding: 16px 24px; border-radius: 8px 8px 0 0; margin: -24px -24px 24px -24px;">
+              <h2 style="font-size: 18px; font-weight: bold; color: #ffffff; margin: 0;">📅 New Booking Request</h2>
+              <p style="font-size: 13px; color: #86efac; margin: 4px 0 0 0;">A customer has scheduled a slot — review and approve below.</p>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563; width: 140px;">Booking ID:</td>
-                <td style="padding: 10px 0; color: #111827; font-family: monospace; font-weight: bold;">${referenceId}</td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280; width: 150px;">Booking ID:</td>
+                <td style="padding: 10px 0; color: #111827; font-family: monospace; font-weight: bold; font-size: 15px;">${referenceId}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Customer Name:</td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Customer:</td>
                 <td style="padding: 10px 0; color: #111827;">${fullName}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Phone Number:</td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Phone:</td>
                 <td style="padding: 10px 0; color: #111827;">${phone}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Email Address:</td>
-                <td style="padding: 10px 0; color: #111827;"><a href="mailto:${email}">${email}</a></td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Email:</td>
+                <td style="padding: 10px 0; color: #111827;"><a href="mailto:${email}" style="color: #1e6fa8;">${email}</a></td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Service Needed:</td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Service:</td>
                 <td style="padding: 10px 0; color: #1b3a2d; font-weight: bold;">${serviceType}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Date Requested:</td>
-                <td style="padding: 10px 0; color: #111827;"><strong>${date}</strong></td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Date:</td>
+                <td style="padding: 10px 0; color: #111827; font-weight: bold;">${date}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f3f4f6;">
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563;">Preferred Time:</td>
-                <td style="padding: 10px 0; color: #111827;"><strong>${timeSlot}</strong></td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280;">Time Slot:</td>
+                <td style="padding: 10px 0; color: #111827; font-weight: bold;">${timeSlot}</td>
               </tr>
               <tr>
-                <td style="padding: 10px 0; font-weight: bold; color: #4b5563; vertical-align: top;">Notes/Comments:</td>
-                <td style="padding: 10px 0; color: #111827; line-height: 1.5; white-space: pre-wrap;">${message || "No notes."}</td>
+                <td style="padding: 10px 0; font-weight: bold; color: #6b7280; vertical-align: top;">Notes:</td>
+                <td style="padding: 10px 0; color: #374151; line-height: 1.6; white-space: pre-wrap;">${message || "No additional notes."}</td>
               </tr>
             </table>
-          </div>
-        `
-      });
 
-      // Email to Customer
-      await resend.emails.send({
-        from: "Precision Exterior <onboarding@resend.dev>",
-        to: email,
-        subject: `Your Booking Request: ${referenceId}`,
-        html: `
-          <div style="font-family: sans-serif; padding: 24px; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff;">
-            <h2 style="font-size: 18px; font-weight: bold; color: #1b3a2d; margin-bottom: 12px;">Booking Successfully Requested</h2>
-            <p style="font-size: 14px; color: #4b5563; line-height: 1.5; margin-bottom: 16px;">Hello ${fullName},</p>
-            <p style="font-size: 14px; color: #4b5563; line-height: 1.5; margin-bottom: 20px;">We have successfully received your booking request. Our crew scheduling coordinator will review the date and time slot and send you a confirmation message shortly.</p>
-            <div style="background-color: #f9fafb; padding: 16px; border-radius: 8px; font-size: 13px; color: #374151; border: 1px solid #e5e7eb; margin-bottom: 24px;">
-              <strong style="color: #1e6fa8;">Booking Details:</strong>
-              <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #4b5563; line-height: 1.6;">
-                <li>Booking Reference: <strong>${referenceId}</strong></li>
-                <li>Requested Date: <strong>${date}</strong></li>
-                <li>Preferred Slot: <strong>${timeSlot}</strong></li>
-                <li>Service: <strong>${serviceType}</strong></li>
-              </ul>
+            <div style="text-align: center; margin-top: 8px;">
+              <a href="${siteUrl}/#admin"
+                style="display: inline-block; background-color: #1b3a2d; color: #ffffff; font-size: 14px; font-weight: bold; text-decoration: none; padding: 14px 32px; border-radius: 8px; letter-spacing: 0.5px;">
+                🔐 Open Admin Dashboard
+              </a>
+              <p style="font-size: 11px; color: #9ca3af; margin-top: 12px;">
+                You can approve, reject or mark this booking as completed in the dashboard.
+              </p>
             </div>
-            <p style="font-size: 14px; color: #4b5563; line-height: 1.5;">Warm regards,<br/><strong>Precision Gardening & Power Washing Team</strong></p>
           </div>
         `
       });
     } catch (err) {
-      console.error("Failed to send booking emails via Resend:", err);
+      console.error("Failed to send booking notification via Resend:", err);
     }
   }
 
