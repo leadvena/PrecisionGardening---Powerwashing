@@ -1,152 +1,146 @@
-import { motion } from "motion/react";
-import { ShieldCheck, Target, Clock, Star, Award, HeartPulse } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "motion/react";
+import { ShieldCheck, Target, Clock, Star, Award } from "lucide-react";
+
+function Counter({ value, suffix = "", duration = 1.2 }: { value: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = value;
+      const totalMiliseconds = duration * 1000;
+      const stepTime = 16; // ~60fps
+      const steps = totalMiliseconds / stepTime;
+      const increment = end / steps;
+
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          clearInterval(timer);
+          setCount(end);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, stepTime);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, value, duration]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
 
 export default function WhyChooseUs() {
-  const credentials = [
+  const standards = [
     {
       icon: ShieldCheck,
-      title: "Eco-Friendly Methods",
-      desc: "We use safe methods that protect your plants and surfaces without harsh chemicals.",
-      accent: "text-emerald-600 bg-emerald-50",
+      title: "Certified Environmental Care",
+      desc: "Our equipment operates on refined low-emission engines, and our cleaning formulas are 100% biodegradable, safeguarding local waters.",
     },
     {
       icon: Target,
-      title: "Precision Results",
-      desc: "Every job done with attention to detail and care.",
-      accent: "text-accent-blue bg-sky-50",
+      title: "Meticulous Micro-Clippings Trim",
+      desc: "We collect all micro-clippings to avoid thatch buildup and perform clean razor-cuts to prevent grass tip browning.",
     },
     {
       icon: Clock,
-      title: "Reliable & Local",
-      desc: "We show up on time, every time.",
-      accent: "text-amber-600 bg-amber-50",
+      title: "Committed to On-Time Arrival",
+      desc: "We provide tight, realistic arrival slots and notify you when our crew is 15 minutes away, respecting your home schedule.",
     }
   ];
 
   return (
     <section id="about" className="py-24 bg-[#1b3a2d] text-cream relative overflow-hidden">
-      {/* Decorative leafy overlay background assets */}
-      <div className="absolute inset-0 z-0 opacity-5 select-none pointer-events-none">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="20" cy="20" r="1.5" fill="#f4efe6" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#pattern-circles)" />
-        </svg>
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold bg-white/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
-            Our Standards
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Setting the Benchmark in Exterior Care
-          </h2>
-          <p className="text-zinc-300 leading-relaxed font-light text-base sm:text-lg">
-            We operate with top-tier industrial equipment, organic plant care knowledge, and an uncompromising commitment to customer satisfaction.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          {/* Left Column: Heading and Stats */}
+          <div className="lg:col-span-5 text-left space-y-8">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold bg-white/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
+                Our Standards
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+                Setting the Benchmark in Exterior Care
+              </h2>
+              <p className="text-zinc-300 leading-relaxed font-light text-base sm:text-lg">
+                We operate at high technical standards. Every service slot is handled with professional grade tools and organic garden safety practices.
+              </p>
+            </div>
 
-        {/* 3 Columns Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {credentials.map((item, idx) => {
-            const IconComponent = item.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}>
-                    <div className="bg-cream/10 p-3.5 rounded-xl border border-white/15">
-                      <IconComponent className="w-7 h-7 text-emerald-300" />
-                    </div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+              <div>
+                <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
+                  <Counter value={247} />
+                </div>
+                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                  Homes Cultivated
+                </p>
+              </div>
+
+              <div>
+                <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
+                  <Counter value={98} suffix="%" />
+                </div>
+                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                  Punctual Arrival
+                </p>
+              </div>
+
+              <div>
+                <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
+                  <Counter value={18} suffix="k+" />
+                </div>
+                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                  Sq Ft Cleaned
+                </p>
+              </div>
+
+              <div>
+                <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
+                  <Counter value={100} suffix="%" />
+                </div>
+                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                  Eco-Safe Materials
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Standards List */}
+          <div className="lg:col-span-7 space-y-6">
+            {standards.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 hover:bg-white/10 hover:border-white/15 transition-all duration-300 flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 text-left"
+                >
+                  <div className="bg-cream/10 p-3.5 rounded-xl border border-white/10 text-emerald-300 flex-shrink-0">
+                    <IconComponent className="w-6 h-6" />
                   </div>
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold mb-4 tracking-tight text-white">
-                    {item.title}
-                  </h3>
-                  <p className="text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
-                    {item.desc}
-                  </p>
-                </div>
+                  <div className="space-y-2">
+                    <h3 className="font-serif text-xl font-bold tracking-tight text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-zinc-300 font-light leading-relaxed text-sm sm:text-base">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-                <div className="mt-8 pt-4 border-t border-white/5 flex items-center space-x-2 text-emerald-400 font-mono text-[10px] uppercase tracking-widest font-black">
-                  <span>Guaranteed Standards</span>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Interactive Stats Panel */}
-        <div className="mt-20 border-t border-white/10 pt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center justify-center space-x-1.5 font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              <span>250</span>
-              <span className="text-emerald-400 font-sans font-light">+</span>
-            </div>
-            <p className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mt-2">
-              Homes Cultivated
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div className="flex items-center justify-center space-x-1.5 font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              <span>100</span>
-              <span className="text-emerald-400 font-sans font-light">%</span>
-            </div>
-            <p className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mt-2">
-              Eco-Safe Materials
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="flex items-center justify-center space-x-1.5 font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              <span>15</span>
-              <span className="text-zinc-400 font-sans font-light">k</span>
-              <span className="text-emerald-400 font-sans font-light">+</span>
-            </div>
-            <p className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mt-2">
-              Sq Ft Cleaned
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="flex items-center justify-center space-x-1.5 font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              <span>99</span>
-              <span className="text-emerald-400 font-sans font-light">%</span>
-            </div>
-            <p className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest mt-2">
-              Punctual Arrival
-            </p>
-          </motion.div>
         </div>
 
       </div>

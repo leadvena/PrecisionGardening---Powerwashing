@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Leaf, Scissors, Sparkles, Droplet, Layers, CheckCircle2, Waves, ArrowRight, HelpCircle } from "lucide-react";
+import { Leaf, Droplet, CheckCircle2, ArrowRight, Shield } from "lucide-react";
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState<"all" | "gardening" | "washing">("all");
-  const [selectedEcoDetail, setSelectedEcoDetail] = useState<string | null>(null);
-
   const gardeningServices = [
     {
       title: "Precision Lawn Mowing & Edging",
@@ -37,7 +34,7 @@ export default function Services() {
     },
     {
       title: "Exterior Wall & Siding Cleaning",
-      desc: "Safe, low-pressure chemical-free siding bath targeting soot, dynamic pollen buildup, dust, weavings, and staining.",
+      desc: "Safe, low-pressure chemical-free siding bath targeting soot, pollen buildup, dust, and environmental staining.",
       time: "Gentle Softwash",
     },
     {
@@ -50,16 +47,14 @@ export default function Services() {
   const scrollToContact = (serviceName?: string) => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
-      // Set value in form dynamically if present
       const formSelect = document.getElementById("service-select") as HTMLSelectElement;
       if (formSelect && serviceName) {
         formSelect.value = serviceName;
-        // Trigger synthetic change event to update state in ContactForm
         const event = new Event("change", { bubbles: true });
         formSelect.dispatchEvent(event);
       }
 
-      const offset = 80;
+      const offset = 90;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = contactSection.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -77,195 +72,195 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="font-mono text-xs uppercase tracking-widest text-primary font-bold bg-primary/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
             What We Do
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             Professional Exterior Cultivation & Refinement
           </h2>
-          <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
-            We operate at the intersection of nature and meticulous mechanical excellence. Our services are split into two core disciplines, each handled with absolute precision.
+          <p className="text-zinc-650 leading-relaxed font-light text-base sm:text-lg">
+            We operate at the intersection of nature and meticulous mechanical excellence, offering two core specialized disciplines.
           </p>
         </div>
 
-        {/* Layout Grid: 2 Side-by-Side Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Stacked Layout Section */}
+        <div className="space-y-24">
           
-          {/* Card 1 — Gardening Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl border border-primary/10 hover:shadow-2xl transition-all duration-300"
-          >
-            {/* Unsplash Background Header */}
-            <div className="relative h-64 sm:h-72 flex items-end">
+          {/* Discipline 1: Gardening Services */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Image Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-auto lg:h-[500px]"
+            >
               <img
-                src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=1000&q=80"
-                alt="A beautifully structured precision lawn mowing trim and elegant green hedges"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                referrerPolicy="no-referrer"
+                src="/images/gardening-service.png"
+                alt="Professional gardening hedge shaping and lawn maintenance"
+                className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-slate via-dark-slate/40 to-transparent" />
-              
-              <div className="relative z-10 p-6 sm:p-8 flex items-center space-x-3.5 w-full">
-                <div className="bg-emerald-500 text-white rounded-xl p-3 shadow-lg">
-                  <Leaf className="w-7 h-7" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 to-transparent" />
+              <div className="absolute bottom-6 left-6 flex items-center space-x-3 text-white">
+                <div className="bg-primary p-2.5 rounded-lg shadow">
+                  <Leaf className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] text-emerald-300 uppercase tracking-widest font-black block">
-                    Cultivation Discipline
-                  </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-cream tracking-tight">
-                    Gardening Services 🌱
-                  </h3>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-300 font-bold block">Discipline A</span>
+                  <h3 className="font-serif text-xl font-bold">Lawn & Garden Cultivation</h3>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Card Content & List */}
-            <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between bg-white">
+            {/* List Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-6 text-left"
+            >
               <div>
-                <p className="text-zinc-600 font-light mb-8 italic">
-                  Cultivating elegant lawn lines and organic structural balance. Safe for your family, pets, and local beneficial honeybees.
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-black block mb-2">Horticultural Standards</span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate">Precision Garden Maintenance</h3>
+                <p className="text-zinc-650 font-light mt-3 leading-relaxed">
+                  We shape hedges, manage weeds, and groom lawns with extreme care. Our techniques are designed to preserve plant lifespan, protect soil nutrition, and maintain clean lines.
                 </p>
-                
-                <div className="space-y-6">
-                  {gardeningServices.map((service, index) => (
-                    <div
-                      key={index}
-                      className="group cursor-pointer hover:bg-emerald-50/30 p-3 rounded-lg transition-all duration-200 border border-transparent hover:border-emerald-500/10"
-                      onClick={() => scrollToContact(service.title.split(" & ")[0].split(" ")[0])}
-                    >
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />
-                        <div>
-                          <h4 className="font-serif text-lg font-bold text-primary group-hover:text-emerald-700 transition-colors">
-                            {service.title}
-                          </h4>
-                          <p className="text-sm text-zinc-600 font-light mt-1.5 leading-relaxed">
-                            {service.desc}
-                          </p>
-                          <span className="inline-block bg-emerald-50 text-emerald-700 font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
-                            {service.time}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-zinc-100">
+              <div className="space-y-4 pt-4 border-t border-zinc-150">
+                {gardeningServices.map((service, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => scrollToContact(service.title.split(" & ")[0])}
+                    className="flex items-start space-x-3.5 group cursor-pointer p-2.5 rounded-xl hover:bg-white transition-all duration-200"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-primary group-hover:text-emerald-700 transition-colors">
+                        {service.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-zinc-500 font-light mt-1">
+                        {service.desc}
+                      </p>
+                      <span className="inline-block bg-primary/5 text-primary font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
+                        {service.time}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-6">
                 <button
                   onClick={() => scrollToContact("Lawn Mowing")}
-                  className="w-full inline-flex items-center justify-center space-x-2 bg-primary hover:bg-primary-light text-white font-bold py-3.5 px-6 rounded-lg transition-colors group cursor-pointer"
+                  className="inline-flex items-center space-x-2 bg-primary hover:bg-primary-light text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-colors group cursor-pointer"
                 >
                   <span>Book Gardening Care</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Card 2 — Power Washing Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl border border-primary/10 hover:shadow-2xl transition-all duration-300"
-          >
-            {/* Unsplash Background Header */}
-            <div className="relative h-64 sm:h-72 flex items-end">
-              <img
-                src="https://images.unsplash.com/photo-1528150177508-7cc0c36cda5c?auto=format&fit=crop&w=1000&q=80"
-                alt="A surface cleaner power wash unit cleaning heavy mildew stains from a driveway split line"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark-slate via-dark-slate/40 to-transparent" />
-              
-              <div className="relative z-10 p-6 sm:p-8 flex items-center space-x-3.5 w-full">
-                <div className="bg-accent-blue text-white rounded-xl p-3 shadow-lg">
-                  <Droplet className="w-7 h-7" />
-                </div>
-                <div>
-                  <span className="font-mono text-[10px] text-sky-300 uppercase tracking-widest font-black block">
-                    Structural Restoration
-                  </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-cream tracking-tight">
-                    Power Washing Services 🚿
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Card Content & List */}
-            <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between bg-white">
+          {/* Discipline 2: Power Washing Services */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* List Column (Desktop Left) */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1"
+            >
               <div>
-                <p className="text-zinc-600 font-light mb-8 italic">
-                  Unveiling brilliant physical surface layers beneath algae, black spore deposits, and hazardous grease compounds.
+                <span className="font-mono text-[10px] text-accent-blue uppercase tracking-widest font-black block mb-2">Restorative Standards</span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate">Deep Power Washing & Softwashing</h3>
+                <p className="text-zinc-650 font-light mt-3 leading-relaxed">
+                  We clean masonry, siding, and wood decks. We adjust pressure levels dynamically to eliminate dirt, black mold, and lichen stains without cracking concrete or scoring soft wood.
                 </p>
-                
-                <div className="space-y-6">
-                  {washingServices.map((service, index) => (
-                    <div
-                      key={index}
-                      className="group cursor-pointer hover:bg-sky-50/30 p-3 rounded-lg transition-all duration-200 border border-transparent hover:border-sky-500/10"
-                      onClick={() => scrollToContact(service.title.includes("Driveway") ? "Driveway Washing" : "Exterior Wall Cleaning")}
-                    >
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent-blue mt-1 flex-shrink-0" />
-                        <div>
-                          <h4 className="font-serif text-lg font-bold text-primary group-hover:text-accent-blue transition-colors">
-                            {service.title}
-                          </h4>
-                          <p className="text-sm text-zinc-600 font-light mt-1.5 leading-relaxed">
-                            {service.desc}
-                          </p>
-                          <span className="inline-block bg-sky-50 text-sky-800 font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
-                            {service.time}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-zinc-100">
+              <div className="space-y-4 pt-4 border-t border-zinc-150">
+                {washingServices.map((service, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => scrollToContact(service.title.split(",")[0])}
+                    className="flex items-start space-x-3.5 group cursor-pointer p-2.5 rounded-xl hover:bg-white transition-all duration-200"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-accent-blue flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-serif text-base sm:text-lg font-bold text-primary group-hover:text-accent-blue transition-colors">
+                        {service.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-zinc-500 font-light mt-1">
+                        {service.desc}
+                      </p>
+                      <span className="inline-block bg-sky-50 text-accent-blue font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
+                        {service.time}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-6">
                 <button
                   onClick={() => scrollToContact("Driveway Washing")}
-                  className="w-full inline-flex items-center justify-center space-x-2 bg-accent-blue hover:bg-accent-blue-light text-white font-bold py-3.5 px-6 rounded-lg transition-colors group cursor-pointer"
+                  className="inline-flex items-center space-x-2 bg-accent-blue hover:bg-accent-blue-light text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-colors group cursor-pointer"
                 >
-                  <span>Book Jet Washing</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span>Book Restorative Washing</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Image Column (Desktop Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-auto lg:h-[500px] order-1 lg:order-2"
+            >
+              <img
+                src="/images/power-washing-action.png"
+                alt="Professional power washer cleaning brick patio surfaces"
+                className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 to-transparent" />
+              <div className="absolute bottom-6 left-6 flex items-center space-x-3 text-white">
+                <div className="bg-accent-blue p-2.5 rounded-lg shadow">
+                  <Droplet className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-sky-300 font-bold block">Discipline B</span>
+                  <h3 className="font-serif text-xl font-bold">Jet Washing & Siding Care</h3>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
         </div>
 
-        {/* Dynamic Interactive Estimate Alert */}
-        <div className="mt-16 bg-primary-light/5 border border-primary/15 rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-center md:justify-between text-left">
+        {/* Eco-Friendly Pledge banner */}
+        <div className="mt-20 bg-white border border-zinc-150 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between text-left shadow-sm">
           <div className="flex items-center space-x-4 mb-4 md:mb-0">
-            <div className="bg-primary/10 rounded-full p-2.5 flex-shrink-0">
-              <Sparkles className="w-6 h-6 text-primary" />
+            <div className="bg-primary/10 rounded-xl p-3 flex-shrink-0 text-primary">
+              <Shield className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-serif text-lg font-bold text-dark-slate">Eco-Friendly Pledge</h4>
-              <p className="text-sm text-zinc-600 font-light mt-1">
-                We utilize bio-degradable chemical neutralizers that entirely harmlessly decompose. They do not leach soil or kill structural flower beds.
+              <h4 className="font-serif text-lg font-bold text-dark-slate">Biodegradable Chemical Neutralizers</h4>
+              <p className="text-sm text-zinc-500 font-light mt-1">
+                We commit to zero harsh residues. Our washing solutions decompose entirely without harming plants, pets, or lawn soils.
               </p>
             </div>
           </div>
           <button
             onClick={() => scrollToContact()}
-            className="w-full md:w-auto bg-transparent border border-primary text-primary hover:bg-primary hover:text-white font-bold py-2.5 px-6 rounded-lg transition-colors cursor-pointer text-center text-sm"
+            className="w-full md:w-auto bg-transparent border border-zinc-300 text-dark-slate hover:bg-zinc-50 font-bold py-2.5 px-6 rounded-xl transition-colors cursor-pointer text-center text-sm active:scale-98"
           >
             Learn More
           </button>

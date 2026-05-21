@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
-import { ArrowLeftRight, Sparkles, AlertCircle, RefreshCw, Layers } from "lucide-react";
+import { ArrowLeftRight, Sparkles, AlertCircle } from "lucide-react";
 
 interface ComparisonType {
   id: string;
@@ -22,21 +22,21 @@ export default function BeforeAfter() {
     wash: {
       id: "wash",
       label: "Power Washing Restorations",
-      beforeUrl: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", // Dirty weathered tile surfaces
-      afterUrl: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80", // Pristine sunlit polished patio stone tile
-      beforeLabel: "Before: Weathered Concrete & Mold",
+      beforeUrl: "https://images.unsplash.com/photo-1628157582853-a796fa650a6a?auto=format&fit=crop&w=1200&q=80", // Dirty mossy stone pavement
+      afterUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=1200&q=80", // Clean paved stones
+      beforeLabel: "Before: Weathered Concrete & Algae",
       afterLabel: "After: Spotless Power-Washed Brilliance",
-      description: "Witness the dynamic elimination of stubborn black moss, slick green algae, and built-up oil residues. Our high-pressure jet wash restores surfaces to their original, pristine color and texture safely."
+      description: "Witness the dynamic elimination of stubborn black moss, slick green algae, and built-up grime. Our high-pressure jet wash restores paths and driveways to their original brick and concrete textures safely.",
     },
     garden: {
       id: "garden",
       label: "Lawn and Gardening Cultivation",
-      beforeUrl: "https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&w=1200&q=80", // Overgrown field weeds and dry bush
-      afterUrl: "https://images.unsplash.com/photo-1534710961226-440c9597e700?auto=format&fit=crop&w=1200&q=80", // Premium striped golf green lawn
+      beforeUrl: "/images/before-garden.png", // Overgrown yard
+      afterUrl: "/images/hero-garden.png", // Manicured green garden lawn
       beforeLabel: "Before: Overgrown Weeds & Unkempt Lawn",
       afterLabel: "After: Precision Cut & Striped Estate Lawn",
-      description: "Our meticulous clipping, weed suppression, and mechanical edge alignment transform neglected yards into spectacular estate lawns. We trim to optimal heights for seasonal thickness and premium health."
-    }
+      description: "Our meticulous clipping, weed suppression, and mechanical edge alignment transform neglected yards into spectacular estate lawns. We trim to optimal heights for seasonal thickness and premium health.",
+    },
   };
 
   const current = comparisons[activeCompare];
@@ -49,7 +49,6 @@ export default function BeforeAfter() {
     setSliderPos(percentage);
   };
 
-  // Attach mouse and touch handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     isDragging.current = true;
@@ -94,7 +93,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section className="py-24 bg-cream-light border-y border-zinc-100 relative overflow-hidden">
+    <section className="py-24 bg-cream-light border-y border-zinc-150 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -105,19 +104,19 @@ export default function BeforeAfter() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             The Difference is Precision
           </h2>
-          <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
-            Drag the handle below to slice between the overgrown, stained &ldquo;Before&rdquo; states and the pristine, professional &ldquo;After&rdquo; results.
+          <p className="text-zinc-650 leading-relaxed font-light text-base sm:text-lg">
+            Drag the handle below to compare overgrown or stained states with our pristine finished results.
           </p>
         </div>
 
         {/* Tab Selector Links */}
-        <div className="flex justify-center space-x-4 mb-8">
+        <div className="flex justify-center space-x-4 mb-12">
           <button
             onClick={() => {
               setActiveCompare("wash");
               setSliderPos(50);
             }}
-            className={`px-5 py-2.5 rounded-lg font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer ${
+            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${
               activeCompare === "wash"
                 ? "bg-accent-blue text-white border-accent-blue shadow-md"
                 : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
@@ -131,7 +130,7 @@ export default function BeforeAfter() {
               setActiveCompare("garden");
               setSliderPos(50);
             }}
-            className={`px-5 py-2.5 rounded-lg font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer ${
+            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${
               activeCompare === "garden"
                 ? "bg-primary text-white border-primary shadow-md"
                 : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
@@ -149,26 +148,26 @@ export default function BeforeAfter() {
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate mb-4">
               {current.label}
             </h3>
-            <p className="text-zinc-600 leading-relaxed font-light mb-6 text-sm sm:text-base">
+            <p className="text-zinc-650 leading-relaxed font-light mb-6 text-sm sm:text-base">
               {current.description}
             </p>
 
             {/* Quick Indicators */}
-            <div className="mt-2 space-y-3">
+            <div className="space-y-3 pb-6 border-b border-zinc-200">
               <div className="flex items-center space-x-3 text-sm text-zinc-700">
-                <div className="w-2 h-2 rounded-full bg-red-400" />
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                 <span className="font-mono text-xs font-semibold">{current.beforeLabel}</span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-zinc-700">
-                <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                 <span className="font-mono text-xs font-semibold">{current.afterLabel}</span>
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-amber-500/5 border border-amber-500/10 rounded-lg flex items-start space-x-3">
+            <div className="mt-6 p-4 bg-amber-500/5 border border-amber-500/10 rounded-xl flex items-start space-x-3">
               <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-amber-800 leading-relaxed">
-                <strong>Swipe interactively</strong>: Grab the blue divider line on the image to sweep left and right to inspect structural surface detail on our real clients.
+                <strong>Swipe interactively</strong>: Grab the blue divider line on the image to sweep left and right to inspect the surface transformation.
               </p>
             </div>
           </div>
@@ -184,13 +183,12 @@ export default function BeforeAfter() {
               {/* After Image (Background) */}
               <img
                 src={current.afterUrl}
-                alt="After power washing or garden care showing spotless pristine quality"
+                alt="After state showing spotless pristine quality"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-                referrerPolicy="no-referrer"
               />
               
               {/* After label pill */}
-              <div className="absolute right-4 bottom-4 bg-[#1b3a2d]/85 text-cream font-mono text-[10px] uppercase tracking-widest font-semibold py-1.5 px-3 rounded-full backdrop-blur-sm z-20">
+              <div className="absolute right-4 bottom-4 bg-[#1b3a2d]/85 text-cream font-mono text-[9px] uppercase tracking-widest font-semibold py-1.5 px-3 rounded-full backdrop-blur-sm z-20">
                 After
               </div>
 
@@ -203,15 +201,14 @@ export default function BeforeAfter() {
               >
                 <img
                   src={current.beforeUrl}
-                  alt="Before image with dirt or unkempt garden weeds before precision intervention"
+                  alt="Before state showing weeds or weathered concrete"
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-                  referrerPolicy="no-referrer"
                 />
               </div>
 
               {/* Before label pill */}
               <div
-                className="absolute left-4 bottom-4 bg-zinc-900/85 text-zinc-200 font-mono text-[10px] uppercase tracking-widest font-semibold py-1.5 px-3 rounded-full backdrop-blur-sm z-25 pointer-events-none transition-opacity duration-300"
+                className="absolute left-4 bottom-4 bg-zinc-900/85 text-zinc-200 font-mono text-[9px] uppercase tracking-widest font-semibold py-1.5 px-3 rounded-full backdrop-blur-sm z-25 pointer-events-none transition-opacity duration-300"
                 style={{ opacity: sliderPos > 15 ? 1 : 0 }}
               >
                 Before
@@ -223,7 +220,7 @@ export default function BeforeAfter() {
                 style={{ left: `${sliderPos}%` }}
               >
                 {/* Grip Handle Wheel */}
-                <div className="ba-slider-handle w-10 h-10 rounded-full bg-accent-blue text-white shadow-xl flex items-center justify-center border-2 border-white absolute transition-transform hover:scale-110 active:scale-95">
+                <div className="ba-slider-handle w-9 h-9 rounded-full bg-accent-blue text-white shadow-xl flex items-center justify-center border-2 border-white absolute transition-transform hover:scale-110 active:scale-95">
                   <ArrowLeftRight className="w-4 h-4" />
                 </div>
               </div>

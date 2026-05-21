@@ -5,7 +5,7 @@ export default function Hero() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
+      const offset = 90;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -13,7 +13,7 @@ export default function Hero() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -21,23 +21,23 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to right, rgba(22, 36, 29, 0.90) 0%, rgba(22, 36, 29, 0.62) 60%, rgba(22, 36, 29, 0.25) 100%), linear-gradient(to top, rgba(22, 36, 29, 0.96) 0%, transparent 50%), url("https://images.unsplash.com/photo-1534710961226-440c9597e700?auto=format&fit=crop&w=1920&q=80")`,
+        backgroundImage: `linear-gradient(to right, rgba(22, 36, 29, 0.95) 0%, rgba(22, 36, 29, 0.75) 45%, rgba(22, 36, 29, 0.15) 100%), linear-gradient(to top, rgba(22, 36, 29, 0.95) 0%, transparent 40%), url("/images/hero-garden.png")`,
       }}
     >
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:py-32 w-full flex items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:py-36 w-full flex items-center">
         <div className="max-w-3xl text-left">
           {/* Subtle Eco-Slogan Pill */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-[#1b3a2d]/40 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6"
+            className="inline-flex items-center space-x-2 bg-primary/40 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full mb-6 animate-pulse"
           >
             <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span className="font-mono text-[11px] uppercase tracking-widest text-[#f5f0e8] font-bold">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#f5f0e8] font-bold">
               Premium Outdoor Care Specialists
             </span>
           </motion.div>
@@ -53,14 +53,14 @@ export default function Hero() {
             Care by Precision
           </motion.h1>
 
-          {/* Subheading - Plays Lato */}
+          {/* Subheading - Plays DM Sans via font-sans */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg sm:text-xl text-zinc-300 font-light leading-relaxed max-w-2xl mb-10 h-auto"
+            className="text-base sm:text-lg md:text-xl text-zinc-300 font-light leading-relaxed max-w-2xl mb-10 h-auto"
           >
-            Professional gardening and power washing — keeping your outdoor spaces healthy, clean, and beautiful. Eco-safe methods, reliable service, and stunning results.
+            Expert gardening and restorative power washing. We treat your property with organic horticultural methods and deep surface extraction to reveal spotless, lasting brilliance.
           </motion.p>
 
           {/* Two CTA Buttons */}
@@ -72,15 +72,15 @@ export default function Hero() {
           >
             <button
               onClick={() => scrollToSection("contact")}
-              className="inline-flex items-center justify-center space-x-2 bg-accent-blue hover:bg-accent-blue-light text-white font-bold text-base px-8 py-4 rounded shadow-lg hover:shadow-accent-blue/30 transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center justify-center space-x-2 bg-accent-blue hover:bg-accent-blue-light text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-lg hover:shadow-accent-blue/30 transition-all duration-300 group cursor-pointer active:scale-98"
             >
-              <Calendar className="w-5 h-5 text-zinc-100" />
+              <Calendar className="w-5 h-5 text-zinc-150" />
               <span>Get a Free Quote</span>
             </button>
 
             <button
               onClick={() => scrollToSection("services")}
-              className="inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/15 text-cream hover:text-white border border-white/20 hover:border-white/40 backdrop-blur-md font-bold text-base px-8 py-4 rounded transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/15 text-cream hover:text-white border border-white/20 hover:border-white/40 backdrop-blur-md font-bold text-sm sm:text-base px-8 py-4 rounded-xl transition-all duration-300 group cursor-pointer active:scale-98"
             >
               <span>View Our Services</span>
               <ArrowRight className="w-5 h-5 text-cream group-hover:translate-x-1 transition-transform" />
@@ -95,36 +95,25 @@ export default function Hero() {
             className="mt-16 grid grid-cols-3 gap-6 border-t border-white/10 pt-8 max-w-lg"
           >
             <div>
-              <p className="font-serif text-3xl font-bold text-white">100%</p>
-              <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-1">
-                Eco-Friendly
+              <p className="font-serif text-2xl sm:text-3xl font-bold text-white">240+</p>
+              <p className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest mt-1">
+                Homes Cultivated
               </p>
             </div>
             <div>
-              <p className="font-serif text-3xl font-bold text-white">5.0 Star</p>
-              <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-1">
-                Rating
+              <p className="font-serif text-2xl sm:text-3xl font-bold text-white">4.9/5</p>
+              <p className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest mt-1">
+                Google Rating
               </p>
             </div>
             <div>
-              <p className="font-serif text-3xl font-bold text-white">On-Time</p>
-              <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-1">
-                Guarantee
+              <p className="font-serif text-2xl sm:text-3xl font-bold text-white">100%</p>
+              <p className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest mt-1">
+                On-Time Promise
               </p>
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Decorative Wave Divider at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden line-height-0">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-full h-[30px] text-cream fill-current"
-        >
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.41,75.31,23.11,133.32,35.8,187.31,47.62,248.06,59.29,321.39,56.44Z"></path>
-        </svg>
       </div>
     </section>
   );

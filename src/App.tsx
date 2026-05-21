@@ -1,30 +1,81 @@
-import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import TrustBar from "./components/TrustBar";
 import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
+import HowItWorks from "./components/HowItWorks";
 import WhyChooseUs from "./components/WhyChooseUs";
 import BeforeAfter from "./components/BeforeAfter";
+import FAQ from "./components/FAQ";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import AdminDashboard from "./components/AdminDashboard";
 
 export default function App() {
+  const [isAdmin, setIsAdmin] = useState(window.location.hash === "#admin");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setIsAdmin(window.location.hash === "#admin");
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  if (isAdmin) {
+    return (
+      <div className="relative min-h-screen bg-cream selection:bg-accent-blue selection:text-white overflow-x-hidden">
+        {/* Floating Navbar with Return Option */}
+        <header className="fixed top-4 left-4 right-4 md:left-8 md:right-8 bg-white/80 backdrop-blur-md shadow-lg border border-primary/5 rounded-xl z-50 p-4 flex items-center justify-between">
+          <a href="#" className="flex items-center space-x-2">
+            <span className="font-serif text-lg font-bold tracking-tight text-[#1b3a2d]">
+              Precision Gardening & Power Washing
+            </span>
+          </a>
+          <a
+            href="#"
+            className="bg-emerald-950 hover:bg-primary text-cream text-xs uppercase tracking-wider font-bold py-2.5 px-4 rounded-lg shadow transition duration-200"
+          >
+            Return to Site
+          </a>
+        </header>
+        
+        {/* Spacer for navbar */}
+        <div className="pt-24">
+          <AdminDashboard />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative min-h-screen bg-cream selection:bg-accent-blue selection:text-white overflow-x-hidden">
       
-      {/* Absolute Header Seasonal Banner */}
-      <div className="bg-gradient-to-r from-emerald-950 via-[#1b3a2d] to-emerald-950 text-cream text-[11px] sm:text-xs font-semibold py-2.5 px-4 text-center border-b border-white/5 relative z-50">
+      {/* Skip to main content link for keyboard users */}
+      <a
+        href="#services"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-4 py-2.5 rounded-lg z-[100] font-sans font-bold text-xs uppercase tracking-wider shadow-lg"
+      >
+        Skip to main content
+      </a>
+
+      {/* Seasonal Promo Banner */}
+      <div className="bg-gradient-to-r from-emerald-950 via-[#1b3a2d] to-emerald-950 text-cream text-[10px] sm:text-xs font-semibold py-2.5 px-4 text-center border-b border-white/5 relative z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-center space-x-2">
-          <span className="inline-flex items-center bg-accent-blue text-white rounded px-1.5 py-0.5 text-[9px] uppercase tracking-widest font-bold font-mono">
+          <span className="inline-flex items-center bg-accent-blue text-white rounded px-1.5 py-0.5 text-[8px] sm:text-[9px] uppercase tracking-widest font-bold font-mono">
             Seasonal Promo
           </span>
-          <span className="font-light tracking-wide text-zinc-100">
+          <span className="font-light tracking-wide text-zinc-150">
             Book an early-summer <strong>Lawn Cultivation Package</strong> & receive <strong>15% off</strong> any concrete or siding Jet Wash!
           </span>
           <button
             onClick={() => {
               const element = document.getElementById("contact");
               if (element) {
-                const offset = 80;
+                const offset = 90;
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = element.getBoundingClientRect().top;
                 const elementPosition = elementRect - bodyRect;
@@ -39,30 +90,40 @@ export default function App() {
         </div>
       </div>
 
-      {/* Navigation Layer */}
+      {/* Floating Navbar */}
       <Navbar />
 
-      {/* Main Container */}
+      {/* Main Content Sections */}
       <main>
-        
         {/* Hero Landing */}
         <Hero />
 
-        {/* Services & Offerings catalog */}
+        {/* Trust Badges Bar */}
+        <TrustBar />
+
+        {/* Services & Catalog */}
         <Services />
 
-        {/* Brand Core Standards & statistics */}
+        {/* Testimonials Review Cards */}
+        <Testimonials />
+
+        {/* Process Timeline */}
+        <HowItWorks />
+
+        {/* Core Standards & Counter Stats */}
         <WhyChooseUs />
 
-        {/* Interactive slide comparison visualizer */}
+        {/* Before / After comparison slider */}
         <BeforeAfter />
 
-        {/* Quote submission segment */}
-        <ContactForm />
+        {/* FAQ Accordion */}
+        <FAQ />
 
+        {/* Quote Form */}
+        <ContactForm />
       </main>
 
-      {/* Unified footer context block */}
+      {/* Footer */}
       <Footer />
 
     </div>
