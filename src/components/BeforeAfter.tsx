@@ -182,6 +182,10 @@ export default function BeforeAfter() {
               <img
                 src={current.afterUrl}
                 alt="After state showing spotless pristine quality"
+                width="800"
+                height="500"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
               />
 
@@ -200,6 +204,10 @@ export default function BeforeAfter() {
                 <img
                   src={current.beforeUrl}
                   alt="Before state showing weeds or weathered concrete"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
                 />
               </div>

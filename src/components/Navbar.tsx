@@ -82,8 +82,11 @@ export default function Navbar() {
           >
             <div className="relative flex items-center justify-center w-9 h-9 transition-transform duration-300 group-hover:scale-110">
               <img
-                src="/images/favicon.png"
+                src="/images/favicon.webp"
                 alt="Precision Logo"
+                width="36"
+                height="36"
+                loading="eager"
                 className="w-full h-full object-contain"
               />
             </div>

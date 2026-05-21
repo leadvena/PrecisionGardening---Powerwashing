@@ -100,6 +100,10 @@ export default function Services() {
               <img
                 src="/images/gardening-service.webp"
                 alt="Professional gardening hedge shaping and lawn maintenance"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 to-transparent" />
@@ -228,6 +232,10 @@ export default function Services() {
               <img
                 src="/images/power-washing-action.webp"
                 alt="Professional power washer cleaning brick patio surfaces"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 to-transparent" />

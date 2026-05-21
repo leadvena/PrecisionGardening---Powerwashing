@@ -42,8 +42,11 @@ export default function Footer() {
             >
               <div className="relative flex items-center justify-center w-10 h-10 transition-transform duration-300 group-hover:scale-110">
                 <img
-                  src="/images/favicon.png"
+                  src="/images/favicon.webp"
                   alt="Precision Logo"
+                  width="40"
+                  height="40"
+                  loading="lazy"
                   className="w-full h-full object-contain"
                 />
               </div>

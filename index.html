@@ -24,10 +24,14 @@
     content="Professional lawn mowing, hedge trimming, driveway jet washing, and siding softwash in Galway City, Salthill, Oranmore, and Barna. Eco-friendly methods. Get a free quote today." />
   <meta property="twitter:image" content="/images/hero-garden.webp" />
 
-  <!-- Google Fonts Connection -->
+  <!-- Google Fonts: preconnect + async non-blocking load -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" /></noscript>
+
+  <!-- Preload LCP hero image to eliminate resource load delay -->
+  <link rel="preload" as="image" href="/images/hero-garden.webp" fetchpriority="high" />
 
   <!-- Schema Markup: LocalBusiness -->
   <script type="application/ld+json">
