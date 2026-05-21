@@ -22,8 +22,8 @@ export default function BeforeAfter() {
     wash: {
       id: "wash",
       label: "Power Washing Restorations",
-      beforeUrl: "https://images.unsplash.com/photo-1628157582853-a796fa650a6a?auto=format&fit=crop&w=1200&q=80", // Dirty mossy stone pavement
-      afterUrl: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=1200&q=80", // Clean paved stones
+      beforeUrl: "/images/before-patio.png", // Dirty mossy stone pavement
+      afterUrl: "/images/after-patio.png", // Clean paved stones
       beforeLabel: "Before: Weathered Concrete & Algae",
       afterLabel: "After: Spotless Power-Washed Brilliance",
       description: "Witness the dynamic elimination of stubborn black moss, slick green algae, and built-up grime. Our high-pressure jet wash restores paths and driveways to their original brick and concrete textures safely.",
@@ -32,7 +32,7 @@ export default function BeforeAfter() {
       id: "garden",
       label: "Lawn and Gardening Cultivation",
       beforeUrl: "/images/before-garden.png", // Overgrown yard
-      afterUrl: "/images/hero-garden.png", // Manicured green garden lawn
+      afterUrl: "/images/after-garden.png", // Manicured green garden lawn
       beforeLabel: "Before: Overgrown Weeds & Unkempt Lawn",
       afterLabel: "After: Precision Cut & Striped Estate Lawn",
       description: "Our meticulous clipping, weed suppression, and mechanical edge alignment transform neglected yards into spectacular estate lawns. We trim to optimal heights for seasonal thickness and premium health.",
@@ -95,7 +95,7 @@ export default function BeforeAfter() {
   return (
     <section className="py-24 bg-cream-light border-y border-zinc-150 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="font-mono text-xs uppercase tracking-widest text-accent-blue font-bold bg-sky-500/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
@@ -116,25 +116,23 @@ export default function BeforeAfter() {
               setActiveCompare("wash");
               setSliderPos(50);
             }}
-            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${
-              activeCompare === "wash"
-                ? "bg-accent-blue text-white border-accent-blue shadow-md"
-                : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
-            }`}
+            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${activeCompare === "wash"
+              ? "bg-accent-blue text-white border-accent-blue shadow-md"
+              : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
+              }`}
           >
             Driveways & Patios
           </button>
-          
+
           <button
             onClick={() => {
               setActiveCompare("garden");
               setSliderPos(50);
             }}
-            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${
-              activeCompare === "garden"
-                ? "bg-primary text-white border-primary shadow-md"
-                : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
-            }`}
+            className={`px-5 py-2.5 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all duration-300 border cursor-pointer active:scale-98 ${activeCompare === "garden"
+              ? "bg-primary text-white border-primary shadow-md"
+              : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
+              }`}
           >
             Gardens & Lawns
           </button>
@@ -142,7 +140,7 @@ export default function BeforeAfter() {
 
         {/* Outer Wrapper */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Details / Text */}
           <div className="lg:col-span-4 flex flex-col justify-center text-left lg:pr-4">
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate mb-4">
@@ -186,7 +184,7 @@ export default function BeforeAfter() {
                 alt="After state showing spotless pristine quality"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
               />
-              
+
               {/* After label pill */}
               <div className="absolute right-4 bottom-4 bg-[#1b3a2d]/85 text-cream font-mono text-[9px] uppercase tracking-widest font-semibold py-1.5 px-3 rounded-full backdrop-blur-sm z-20">
                 After
