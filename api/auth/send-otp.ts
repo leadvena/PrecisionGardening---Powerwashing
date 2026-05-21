@@ -23,13 +23,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Retrieve admin recipient email, defaulting to cesar's or placeholder
   const adminEmail = process.env.ADMIN_EMAIL || "admin@precisionexterior.com";
 
-  const allowedEmails = [
-    adminEmail.toLowerCase().trim(),
-    "cesaresmero2@gmail.com",
-    "admin@precisionexterior.com"
-  ];
-
-  if (!allowedEmails.includes(email.toLowerCase().trim())) {
+  if (email.toLowerCase().trim() !== adminEmail.toLowerCase().trim()) {
     return res.status(401).json({ error: "Access denied: Unauthorized email address" });
   }
 
@@ -54,7 +48,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // On Vercel / Resend, you can send to any verified email or sandbox
       await resend.emails.send({
         from: "Precision Security <onboarding@resend.dev>",
-        to: email,
+        to: adminEmail,
         subject: "Your Precision Admin Portal OTP",
         html: `
           <div style="font-family: sans-serif; padding: 24px; max-width: 480px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px;">
