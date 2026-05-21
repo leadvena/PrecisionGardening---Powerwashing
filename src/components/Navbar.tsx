@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Leaf, Droplet, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -81,9 +81,12 @@ export default function Navbar() {
             onClick={() => scrollToSection("home")}
             className="flex items-center space-x-2 cursor-pointer group"
           >
-            <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 group-hover:border-accent-blue/50 transition-colors duration-300">
-              <Leaf className="w-4.5 h-4.5 text-primary absolute transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110" />
-              <Droplet className="w-3.5 h-3.5 text-accent-blue absolute translate-x-1.5 translate-y-1 transition-transform duration-300 group-hover:translate-y-1.5 group-hover:scale-115" />
+            <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 group-hover:border-accent-blue/50 transition-colors duration-300 p-1.5">
+              <img 
+                src="/images/favicon.svg" 
+                alt="Precision Logo" 
+                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+              />
             </div>
             <div>
               <span className={`font-serif text-lg font-bold tracking-tight block transition-colors ${
