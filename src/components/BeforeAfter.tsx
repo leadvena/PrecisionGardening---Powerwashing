@@ -22,8 +22,8 @@ export default function BeforeAfter() {
     wash: {
       id: "wash",
       label: "Power Washing Restorations",
-      beforeUrl: "/images/before-patio.png", // Dirty mossy stone pavement
-      afterUrl: "/images/after-patio.png", // Clean paved stones
+      beforeUrl: "/images/before-patio.webp", // Dirty mossy stone pavement
+      afterUrl: "/images/after-patio.webp", // Clean paved stones
       beforeLabel: "Before: Weathered Concrete & Algae",
       afterLabel: "After: Spotless Power-Washed Brilliance",
       description: "Witness the dynamic elimination of stubborn black moss, slick green algae, and built-up grime. Our high-pressure jet wash restores paths and driveways to their original brick and concrete textures safely.",
@@ -31,8 +31,8 @@ export default function BeforeAfter() {
     garden: {
       id: "garden",
       label: "Lawn and Gardening Cultivation",
-      beforeUrl: "/images/before-garden.png", // Overgrown yard
-      afterUrl: "/images/after-garden.png", // Manicured green garden lawn
+      beforeUrl: "/images/before-garden.webp", // Overgrown yard
+      afterUrl: "/images/after-garden.webp", // Manicured green garden lawn
       beforeLabel: "Before: Overgrown Weeds & Unkempt Lawn",
       afterLabel: "After: Precision Cut & Striped Estate Lawn",
       description: "Our meticulous clipping, weed suppression, and mechanical edge alignment transform neglected yards into spectacular estate lawns. We trim to optimal heights for seasonal thickness and premium health.",
@@ -93,7 +93,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section className="py-24 bg-cream-light border-y border-zinc-150 relative overflow-hidden">
+    <section className="py-24 bg-cream-light border-y border-zinc-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
@@ -104,7 +104,7 @@ export default function BeforeAfter() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             The Difference is Precision
           </h2>
-          <p className="text-zinc-650 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             Drag the handle below to compare overgrown or stained states with our pristine finished results.
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function BeforeAfter() {
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate mb-4">
               {current.label}
             </h3>
-            <p className="text-zinc-650 leading-relaxed font-light mb-6 text-sm sm:text-base">
+            <p className="text-zinc-700 leading-relaxed font-light mb-6 text-sm sm:text-base">
               {current.description}
             </p>
 

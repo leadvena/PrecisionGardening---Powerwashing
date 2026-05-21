@@ -78,7 +78,7 @@ export default function WhyChooseUs() {
                 <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
                   <Counter value={247} />
                 </div>
-                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                <p className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest mt-2">
                   Homes Cultivated
                 </p>
               </div>
@@ -87,7 +87,7 @@ export default function WhyChooseUs() {
                 <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
                   <Counter value={98} suffix="%" />
                 </div>
-                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                <p className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest mt-2">
                   Punctual Arrival
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function WhyChooseUs() {
                 <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
                   <Counter value={18} suffix="k+" />
                 </div>
-                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                <p className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest mt-2">
                   Sq Ft Cleaned
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function WhyChooseUs() {
                 <div className="font-serif text-4xl sm:text-5xl font-bold text-white flex items-baseline">
                   <Counter value={100} suffix="%" />
                 </div>
-                <p className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-2">
+                <p className="font-mono text-[10px] text-zinc-300 uppercase tracking-widest mt-2">
                   Eco-Safe Materials
                 </p>
               </div>

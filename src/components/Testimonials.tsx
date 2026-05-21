@@ -38,7 +38,7 @@ export default function Testimonials() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             Trusted by Galway Homeowners
           </h2>
-          <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             Real homeowners share their experiences with our precision-based garden management and power washing restorations.
           </p>
         </div>
@@ -74,10 +74,10 @@ export default function Testimonials() {
 
               <div className="border-t border-zinc-100 pt-4 mt-4 flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif font-bold text-base text-dark-slate">
+                  <h3 className="font-serif font-bold text-base text-dark-slate">
                     {review.name}
-                  </h4>
-                  <p className="font-sans text-xs text-zinc-500 mt-0.5">
+                  </h3>
+                  <p className="font-sans text-xs text-zinc-700 mt-0.5">
                     {review.location}
                   </p>
                 </div>

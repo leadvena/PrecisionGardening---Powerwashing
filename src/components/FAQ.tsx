@@ -44,7 +44,7 @@ export default function FAQ() {
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-dark-slate tracking-tight mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             Find immediate answers regarding our credentials, safety protocols, scheduling, and billing systems.
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function FAQ() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-xl border border-zinc-150 shadow-sm overflow-hidden transition-all duration-200"
+                className="bg-white rounded-xl border border-zinc-200 shadow-sm overflow-hidden transition-all duration-200"
               >
                 <button
                   onClick={() => toggleFAQ(idx)}
@@ -66,7 +66,7 @@ export default function FAQ() {
                   <span className="font-serif text-base sm:text-lg font-bold text-dark-slate">
                     {faq.question}
                   </span>
-                  <div className={`p-1 rounded-full ${isOpen ? "bg-primary/10 text-primary" : "bg-zinc-100 text-zinc-500"}`}>
+                  <div className={`p-1 rounded-full ${isOpen ? "bg-primary/10 text-primary" : "bg-zinc-100 text-zinc-600"}`}>
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
@@ -79,8 +79,8 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 pt-1 border-t border-zinc-50">
-                        <p className="text-sm sm:text-base text-zinc-500 font-light leading-relaxed">
+                      <div className="px-6 pb-6 pt-1 border-t border-zinc-200">
+                        <p className="text-sm sm:text-base text-zinc-700 font-light leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>

@@ -24,7 +24,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-24 bg-cream-light border-y border-zinc-100 relative">
+    <section className="py-24 bg-cream-light border-y border-zinc-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -35,7 +35,7 @@ export default function HowItWorks() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             How Precision Works
           </h2>
-          <p className="text-zinc-600 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             A simple, transparent timeline to bring meticulous order and cleanliness back to your home landscape.
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
-                className="bg-white rounded-2xl p-8 border border-zinc-100 shadow-sm relative z-10 flex flex-col justify-between hover:shadow-md transition-shadow duration-300"
+                className="bg-white rounded-2xl p-8 border border-zinc-200 shadow-sm relative z-10 flex flex-col justify-between hover:shadow-md transition-shadow duration-300"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -71,12 +71,12 @@ export default function HowItWorks() {
                     {step.title}
                   </h3>
                   
-                  <p className="text-sm text-zinc-500 font-light leading-relaxed">
+                  <p className="text-sm text-zinc-700 font-light leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-zinc-50 flex items-center justify-between text-zinc-400 font-mono text-[10px] uppercase tracking-widest font-black">
+                <div className="mt-8 pt-4 border-t border-zinc-200 flex items-center justify-between text-zinc-600 font-mono text-[10px] uppercase tracking-widest font-black">
                   <span>Step {step.number}</span>
                   {idx < 2 && <ArrowRight className="w-3.5 h-3.5 hidden md:block text-zinc-300" />}
                 </div>

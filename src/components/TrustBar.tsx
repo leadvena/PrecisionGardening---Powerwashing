@@ -26,7 +26,7 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="bg-white border-y border-zinc-150 py-8 relative z-20 shadow-sm">
+    <section className="bg-white border-y border-zinc-200 py-8 relative z-20 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {trustItems.map((item, idx) => {
@@ -44,10 +44,10 @@ export default function TrustBar() {
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-sm sm:text-base text-dark-slate">
+                  <p className="font-sans font-bold text-sm sm:text-base text-dark-slate">
                     {item.title}
-                  </h4>
-                  <p className="font-sans text-xs text-zinc-500 mt-0.5">
+                  </p>
+                  <p className="font-sans text-xs text-zinc-700 mt-0.5">
                     {item.desc}
                   </p>
                 </div>

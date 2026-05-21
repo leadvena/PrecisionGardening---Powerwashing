@@ -79,7 +79,7 @@ export default function Services() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             Professional Exterior Cultivation & Refinement
           </h2>
-          <p className="text-zinc-650 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             We operate at the intersection of nature and meticulous mechanical excellence, offering two core specialized disciplines.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function Services() {
               className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-auto lg:h-[500px]"
             >
               <img
-                src="/images/gardening-service.png"
+                src="/images/gardening-service.webp"
                 alt="Professional gardening hedge shaping and lawn maintenance"
                 className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
               />
@@ -125,12 +125,12 @@ export default function Services() {
               <div>
                 <span className="font-mono text-[10px] text-primary uppercase tracking-widest font-black block mb-2">Horticultural Standards</span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate">Precision Garden Maintenance</h3>
-                <p className="text-zinc-650 font-light mt-3 leading-relaxed">
+                <p className="text-zinc-700 font-light mt-3 leading-relaxed">
                   We shape hedges, manage weeds, and groom lawns with extreme care. Our techniques are designed to preserve plant lifespan, protect soil nutrition, and maintain clean lines.
                 </p>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-zinc-150">
+              <div className="space-y-4 pt-4 border-t border-zinc-200">
                 {gardeningServices.map((service, idx) => (
                   <div
                     key={idx}
@@ -142,7 +142,7 @@ export default function Services() {
                       <h4 className="font-serif text-base sm:text-lg font-bold text-primary group-hover:text-emerald-700 transition-colors">
                         {service.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-zinc-500 font-light mt-1">
+                      <p className="text-xs sm:text-sm text-zinc-600 font-light mt-1">
                         {service.desc}
                       </p>
                       <span className="inline-block bg-primary/5 text-primary font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
@@ -178,12 +178,12 @@ export default function Services() {
               <div>
                 <span className="font-mono text-[10px] text-accent-blue uppercase tracking-widest font-black block mb-2">Restorative Standards</span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark-slate">Deep Power Washing & Softwashing</h3>
-                <p className="text-zinc-650 font-light mt-3 leading-relaxed">
+                <p className="text-zinc-700 font-light mt-3 leading-relaxed">
                   We clean masonry, siding, and wood decks. We adjust pressure levels dynamically to eliminate dirt, black mold, and lichen stains without cracking concrete or scoring soft wood.
                 </p>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-zinc-150">
+              <div className="space-y-4 pt-4 border-t border-zinc-200">
                 {washingServices.map((service, idx) => (
                   <div
                     key={idx}
@@ -195,7 +195,7 @@ export default function Services() {
                       <h4 className="font-serif text-base sm:text-lg font-bold text-primary group-hover:text-accent-blue transition-colors">
                         {service.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-zinc-500 font-light mt-1">
+                      <p className="text-xs sm:text-sm text-zinc-600 font-light mt-1">
                         {service.desc}
                       </p>
                       <span className="inline-block bg-sky-50 text-accent-blue font-mono text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded mt-2">
@@ -226,7 +226,7 @@ export default function Services() {
               className="lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] lg:aspect-auto lg:h-[500px] order-1 lg:order-2"
             >
               <img
-                src="/images/power-washing-action.png"
+                src="/images/power-washing-action.webp"
                 alt="Professional power washer cleaning brick patio surfaces"
                 className="w-full h-full object-cover hover:scale-103 transition-transform duration-500"
               />
@@ -246,14 +246,14 @@ export default function Services() {
         </div>
 
         {/* Eco-Friendly Pledge banner */}
-        <div className="mt-20 bg-white border border-zinc-150 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between text-left shadow-sm">
+        <div className="mt-20 bg-white border border-zinc-200 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between text-left shadow-sm">
           <div className="flex items-center space-x-4 mb-4 md:mb-0">
             <div className="bg-primary/10 rounded-xl p-3 flex-shrink-0 text-primary">
               <Shield className="w-6 h-6" />
             </div>
             <div>
               <h4 className="font-serif text-lg font-bold text-dark-slate">Biodegradable Chemical Neutralizers</h4>
-              <p className="text-sm text-zinc-500 font-light mt-1">
+              <p className="text-sm text-zinc-650 font-light mt-1">
                 We commit to zero harsh residues. Our washing solutions decompose entirely without harming plants, pets, or lawn soils.
               </p>
             </div>

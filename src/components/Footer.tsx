@@ -85,10 +85,10 @@ export default function Footer() {
 
           {/* Column 2: Navigation Links */}
           <div className="md:col-span-3 flex flex-col items-start text-left">
-            <h4 className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-6 border-b border-white/5 pb-2 w-full">
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-6 border-b border-white/5 pb-2 w-full">
               Navigation
-            </h4>
-            <div className="space-y-3 flex flex-col items-start text-sm text-zinc-350">
+            </p>
+            <div className="space-y-3 flex flex-col items-start text-sm text-zinc-300">
               <button
                 onClick={() => scrollToSection("home")}
                 className="hover:text-white transition-colors cursor-pointer"
@@ -124,10 +124,10 @@ export default function Footer() {
 
           {/* Column 3: Newsletter SignUp */}
           <div className="md:col-span-4 flex flex-col items-start text-left space-y-4">
-            <h4 className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2 border-b border-white/5 pb-2 w-full">
+            <p className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2 border-b border-white/5 pb-2 w-full">
               Seasonal Guides
-            </h4>
-            <p className="text-zinc-350 font-light text-xs leading-relaxed">
+            </p>
+            <p className="text-zinc-300 font-light text-xs leading-relaxed">
               Subscribe to receive brief spring mulching schedules and cold weather brick preservation tips.
             </p>
 

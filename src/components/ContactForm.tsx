@@ -169,7 +169,7 @@ export default function ContactForm() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-dark-slate tracking-tight mb-4">
             Book a Crew or Request Quote
           </h2>
-          <p className="text-zinc-650 leading-relaxed font-light text-base sm:text-lg">
+          <p className="text-zinc-700 leading-relaxed font-light text-base sm:text-lg">
             Choose whether to schedule an instant service slot with our crew or request a custom digital estimate.
           </p>
         </div>
@@ -280,7 +280,7 @@ export default function ContactForm() {
                       className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${
                         requestType === "quote" 
                           ? "bg-[#1b3a2d] text-white shadow-sm" 
-                          : "text-zinc-650 hover:bg-cream"
+                          : "text-zinc-700 hover:bg-cream"
                       }`}
                     >
                       Request Quote
@@ -291,7 +291,7 @@ export default function ContactForm() {
                       className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${
                         requestType === "booking" 
                           ? "bg-[#1b3a2d] text-white shadow-sm" 
-                          : "text-zinc-650 hover:bg-cream"
+                          : "text-zinc-700 hover:bg-cream"
                       }`}
                     >
                       Book Crew Slot
@@ -301,7 +301,7 @@ export default function ContactForm() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Full Name */}
                     <div id="field-fullName">
-                      <label htmlFor="fullName" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5">
+                      <label htmlFor="fullName" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5">
                         Full Name <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -327,7 +327,7 @@ export default function ContactForm() {
 
                     {/* Phone number */}
                     <div id="field-phone">
-                      <label htmlFor="phone" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5">
+                      <label htmlFor="phone" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5">
                         Phone Number <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -355,7 +355,7 @@ export default function ContactForm() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Email address */}
                     <div id="field-email">
-                      <label htmlFor="email" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5">
+                      <label htmlFor="email" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5">
                         Email Address <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -381,7 +381,7 @@ export default function ContactForm() {
 
                     {/* Service Type Select */}
                     <div>
-                      <label htmlFor="service-select" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5">
+                      <label htmlFor="service-select" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5">
                         Service Needed
                       </label>
                       <select
@@ -408,7 +408,7 @@ export default function ContactForm() {
                       className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2 border-t border-zinc-100"
                     >
                       <div id="field-date">
-                        <label htmlFor="date" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5 flex items-center">
+                        <label htmlFor="date" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5 flex items-center">
                           <Calendar className="w-3.5 h-3.5 mr-1 text-[#1e6fa8]" /> Select Date <span className="text-rose-500 ml-0.5">*</span>
                         </label>
                         <input
@@ -433,7 +433,7 @@ export default function ContactForm() {
                       </div>
 
                       <div>
-                        <label htmlFor="timeSlot" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5 flex items-center">
+                        <label htmlFor="timeSlot" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5 flex items-center">
                           <Clock className="w-3.5 h-3.5 mr-1 text-[#1e6fa8]" /> Preferred Time
                         </label>
                         <select
@@ -452,7 +452,7 @@ export default function ContactForm() {
 
                   {/* Message Area */}
                   <div>
-                    <label htmlFor="message" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-650 font-bold mb-1.5">
+                    <label htmlFor="message" className="block text-[10px] font-mono uppercase tracking-wider text-zinc-700 font-bold mb-1.5">
                       {requestType === "booking" ? "Additional Notes or Gate Codes" : "Message & Property Specifications"}
                     </label>
                     <textarea
@@ -515,7 +515,7 @@ export default function ContactForm() {
                     {requestType === "booking" ? "Booking Requested" : "Estimate Logged"}
                   </h3>
                   
-                  <p className="text-zinc-650 leading-relaxed font-light max-w-md mb-6 text-xs sm:text-sm">
+                  <p className="text-zinc-700 leading-relaxed font-light max-w-md mb-6 text-xs sm:text-sm">
                     Thank you, <strong>{formData.fullName}</strong>. Your {requestType === "booking" ? "booking request" : "estimate query"} is received. We've sent a notification to your email: <strong>{formData.email}</strong>.
                   </p>
 

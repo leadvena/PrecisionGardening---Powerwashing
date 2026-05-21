@@ -69,8 +69,8 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-[52px] left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-300 rounded-2xl ${scrolled
-          ? "bg-white/95 border border-zinc-200 shadow-lg py-3 backdrop-blur-md"
-          : "bg-transparent py-5"
+        ? "bg-white/95 border border-zinc-200 shadow-lg py-3 backdrop-blur-md"
+        : "bg-transparent py-5"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export default function Navbar() {
                 }`}>
                 Precision
               </span>
-              <span className={`font-mono text-[8px] uppercase tracking-widest block -mt-1 transition-colors ${scrolled ? "text-zinc-500" : "text-zinc-300"
+              <span className={`font-mono text-[8px] uppercase tracking-widest block -mt-1 transition-colors ${scrolled ? "text-zinc-700" : "text-zinc-300"
                 }`}>
                 Lawn & Jet-Wash
               </span>
@@ -106,12 +106,12 @@ export default function Navbar() {
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
                 className={`font-medium text-xs tracking-wider transition-colors uppercase cursor-pointer relative py-1.5 px-3 rounded-lg ${scrolled
-                    ? activeSection === link.id
-                      ? "text-primary bg-primary/5 font-bold"
-                      : "text-zinc-600 hover:text-primary hover:bg-zinc-50"
-                    : activeSection === link.id
-                      ? "text-white bg-white/10 font-bold"
-                      : "text-cream/80 hover:text-white hover:bg-white/5"
+                  ? activeSection === link.id
+                    ? "text-primary bg-primary/5 font-bold"
+                    : "text-zinc-600 hover:text-primary hover:bg-zinc-50"
+                  : activeSection === link.id
+                    ? "text-white bg-white/10 font-bold"
+                    : "text-cream/80 hover:text-white hover:bg-white/5"
                   }`}
               >
                 {link.label}
@@ -124,8 +124,8 @@ export default function Navbar() {
             <button
               onClick={() => scrollToSection("contact")}
               className={`inline-flex items-center space-x-2 font-medium text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-sm hover:shadow group transition-all duration-300 cursor-pointer active:scale-98 ${scrolled
-                  ? "bg-primary hover:bg-primary-light text-white"
-                  : "bg-white hover:bg-cream text-primary"
+                ? "bg-primary hover:bg-primary-light text-white"
+                : "bg-white hover:bg-cream text-primary"
                 }`}
             >
               <span>Get a Free Quote</span>
@@ -162,8 +162,8 @@ export default function Navbar() {
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
                   className={`w-full text-left block px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${activeSection === link.id
-                      ? "text-primary bg-primary/5"
-                      : "text-zinc-650 hover:bg-zinc-50"
+                    ? "text-primary bg-primary/5"
+                    : "text-zinc-700 hover:bg-zinc-50"
                     }`}
                 >
                   {link.label}

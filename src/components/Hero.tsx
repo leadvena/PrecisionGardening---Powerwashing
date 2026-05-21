@@ -23,7 +23,7 @@ export default function Hero() {
       id="home"
       className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `linear-gradient(to right, rgba(22, 36, 29, 0.95) 0%, rgba(22, 36, 29, 0.75) 45%, rgba(22, 36, 29, 0.15) 100%), linear-gradient(to top, rgba(22, 36, 29, 0.95) 0%, transparent 40%), url("/images/hero-garden.png")`,
+        backgroundImage: `linear-gradient(to right, rgba(22, 36, 29, 0.95) 0%, rgba(22, 36, 29, 0.75) 45%, rgba(22, 36, 29, 0.15) 100%), linear-gradient(to top, rgba(22, 36, 29, 0.95) 0%, transparent 40%), url("/images/hero-garden.webp")`,
       }}
     >
       {/* Hero Content */}
