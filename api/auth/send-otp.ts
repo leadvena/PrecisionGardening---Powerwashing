@@ -22,17 +22,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Retrieve admin recipient email, defaulting to cesar's or placeholder
   const adminEmail = process.env.ADMIN_EMAIL || "admin@precisionexterior.com";
-  
-  if (email.toLowerCase().trim() !== adminEmail.toLowerCase().trim()) {
+
+  const allowedEmails = [
+    adminEmail.toLowerCase().trim(),
+    "cesaresmero2@gmail.com",
+    "admin@precisionexterior.com"
+  ];
+
+  if (!allowedEmails.includes(email.toLowerCase().trim())) {
     return res.status(401).json({ error: "Access denied: Unauthorized email address" });
   }
 
   // Generate 6-digit OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  
+
   // 5 minute expiry window
   const expiry = Date.now() + 5 * 60 * 1000;
-  
+
   // Create signature using server-only JWT secret
   const secret = process.env.JWT_SECRET || "precision-fallback-secret-key-2026";
   const signature = crypto
@@ -48,7 +54,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // On Vercel / Resend, you can send to any verified email or sandbox
       await resend.emails.send({
         from: "Precision Security <onboarding@resend.dev>",
-        to: adminEmail,
+        to: email,
         subject: "Your Precision Admin Portal OTP",
         html: `
           <div style="font-family: sans-serif; padding: 24px; max-width: 480px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px;">

@@ -4,17 +4,17 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:vite\"",
+    "dev:vite": "vite --port=3000 --host=0.0.0.0",
+    "dev:api": "tsx dev-server.ts",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "rm -rf dist dev-server.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
-    "dotenv": "^17.2.3",
-    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
@@ -29,9 +29,13 @@
     "@types/node": "^22.14.0",
     "@vercel/node": "^5.8.3",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "esbuild": "^0.25.0",
+    "express": "^5.2.1",
     "tailwindcss": "^4.1.14",
-    "tsx": "^4.21.0",
+    "tsx": "^4.22.3",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"
   }
