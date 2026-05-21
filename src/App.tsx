@@ -62,8 +62,8 @@ export default function App() {
         Skip to main content
       </a>
 
-      {/* Seasonal Promo Banner */}
-      <div className="bg-gradient-to-r from-emerald-950 via-[#1b3a2d] to-emerald-950 text-cream text-[10px] sm:text-xs font-semibold py-2.5 px-4 text-center border-b border-white/5 relative z-50">
+      {/* Seasonal Promo Banner — fixed at very top, above navbar */}
+      <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-emerald-950 via-[#1b3a2d] to-emerald-950 text-cream text-[10px] sm:text-xs font-semibold py-2.5 px-4 text-center border-b border-white/5 z-[60]">
         <div className="max-w-7xl mx-auto flex items-center justify-center space-x-2">
           <span className="inline-flex items-center bg-accent-blue text-white rounded px-1.5 py-0.5 text-[8px] sm:text-[9px] uppercase tracking-widest font-bold font-mono">
             Seasonal Promo
@@ -89,6 +89,9 @@ export default function App() {
           </button>
         </div>
       </div>
+
+      {/* Spacer to push content below the fixed promo banner (~40px) */}
+      <div className="h-10" />
 
       {/* Floating Navbar */}
       <Navbar />

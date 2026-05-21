@@ -68,7 +68,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-4 left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-300 rounded-2xl ${
+      className={`fixed top-[52px] left-4 right-4 md:left-8 md:right-8 z-50 transition-all duration-300 rounded-2xl ${
         scrolled
           ? "bg-white/95 border border-zinc-200 shadow-lg py-3 backdrop-blur-md"
           : "bg-transparent py-5"
