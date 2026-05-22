@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/quote.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
