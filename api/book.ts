@@ -1,8 +1,7 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
 import { getBookings, saveBookings, Booking } from "./db";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   // CORS Preflight
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -47,7 +46,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   bookings.unshift(newBooking);
   const dbSaved = await saveBookings(bookings);
 
-  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminEmail = process.env.ADMIN_EMAIL || "cesaresmero2@gmail.com";
   const resendApiKey = process.env.RESEND_API_KEY;
   const siteUrl = process.env.SITE_URL || "https://precisionexterior.com";
 
