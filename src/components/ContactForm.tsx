@@ -94,21 +94,21 @@ export default function ContactForm() {
       const endpoint = requestType === "booking" ? "/api/book" : "/api/quote";
       const payload = requestType === "booking"
         ? {
-            fullName: formData.fullName,
-            phone: formData.phone,
-            email: formData.email,
-            serviceType: formData.serviceType,
-            date: formData.date,
-            timeSlot: formData.timeSlot,
-            message: formData.message
-          }
+          fullName: formData.fullName,
+          phone: formData.phone,
+          email: formData.email,
+          serviceType: formData.serviceType,
+          date: formData.date,
+          timeSlot: formData.timeSlot,
+          message: formData.message
+        }
         : {
-            fullName: formData.fullName,
-            phone: formData.phone,
-            email: formData.email,
-            serviceType: formData.serviceType,
-            message: formData.message
-          };
+          fullName: formData.fullName,
+          phone: formData.phone,
+          email: formData.email,
+          serviceType: formData.serviceType,
+          message: formData.message
+        };
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -124,13 +124,8 @@ export default function ContactForm() {
       });
       setSubmitSuccess(true);
     } catch (err: any) {
-      // Fallback local support if api is not running
-      const randomRef = "PRC-" + Math.floor(100000 + Math.random() * 900000);
-      setTicketDetails({
-        id: randomRef,
-        type: requestType === "booking" ? "Service Appointment (Offline)" : "Estimate Request (Offline)"
-      });
-      setSubmitSuccess(true);
+      setFormErrors({ submit: "Something went wrong. Please call us directly." });
+      // Don't set submitSuccess to true
     } finally {
       setIsSubmitting(false);
     }
@@ -160,7 +155,7 @@ export default function ContactForm() {
   return (
     <section id="contact" className="py-24 bg-cream relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="font-mono text-xs uppercase tracking-widest text-[#1e6fa8] font-bold bg-[#1e6fa8]/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
@@ -175,7 +170,7 @@ export default function ContactForm() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-stretch">
-          
+
           {/* Left Sidebar: Service Area & Contact Coordinates */}
           <div className="lg:col-span-5 flex flex-col justify-between bg-[#1b3a2d] text-cream rounded-2xl p-8 sm:p-10 shadow-lg relative overflow-hidden">
             <div className="relative z-10 space-y-8">
@@ -199,7 +194,7 @@ export default function ContactForm() {
                   <circle cx="200" cy="130" r="4" fill="white" />
                   <circle cx="300" cy="100" r="4" fill="white" />
                 </svg>
-                
+
                 {/* Hub location markers */}
                 <div className="absolute top-1/4 left-1/4 flex flex-col items-center">
                   <span className="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping absolute" />
@@ -256,7 +251,7 @@ export default function ContactForm() {
                 General liability coverage safeguarding masonry layers, garden beds, and botanical structures.
               </p>
             </div>
-            
+
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl z-0" />
           </div>
 
@@ -277,22 +272,20 @@ export default function ContactForm() {
                     <button
                       type="button"
                       onClick={() => setRequestType("quote")}
-                      className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${
-                        requestType === "quote" 
-                          ? "bg-[#1b3a2d] text-white shadow-sm" 
+                      className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${requestType === "quote"
+                          ? "bg-[#1b3a2d] text-white shadow-sm"
                           : "text-zinc-700 hover:bg-cream"
-                      }`}
+                        }`}
                     >
                       Request Quote
                     </button>
                     <button
                       type="button"
                       onClick={() => setRequestType("booking")}
-                      className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${
-                        requestType === "booking" 
-                          ? "bg-[#1b3a2d] text-white shadow-sm" 
+                      className={`py-2 text-xs font-bold rounded-lg transition cursor-pointer ${requestType === "booking"
+                          ? "bg-[#1b3a2d] text-white shadow-sm"
                           : "text-zinc-700 hover:bg-cream"
-                      }`}
+                        }`}
                     >
                       Book Crew Slot
                     </button>
@@ -311,15 +304,14 @@ export default function ContactForm() {
                         placeholder="Sarah Jenkins"
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${
-                          formErrors.fullName
+                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${formErrors.fullName
                             ? "border-rose-500 focus:ring-1 focus:ring-rose-500"
                             : "border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary"
-                        }`}
+                          }`}
                       />
                       {formErrors.fullName && (
                         <p className="text-xs text-rose-500 font-medium flex items-center mt-1.5">
-                           <AlertCircle className="w-3.5 h-3.5 mr-1" />
+                          <AlertCircle className="w-3.5 h-3.5 mr-1" />
                           {formErrors.fullName}
                         </p>
                       )}
@@ -337,11 +329,10 @@ export default function ContactForm() {
                         placeholder="+353 (91) 555 0190"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${
-                          formErrors.phone
+                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${formErrors.phone
                             ? "border-rose-500 focus:ring-1 focus:ring-rose-500"
                             : "border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary"
-                        }`}
+                          }`}
                       />
                       {formErrors.phone && (
                         <p className="text-xs text-rose-500 font-medium flex items-center mt-1.5">
@@ -365,11 +356,10 @@ export default function ContactForm() {
                         placeholder="sarah.jenkins@outlook.com"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${
-                          formErrors.email
+                        className={`w-full bg-cream-light border text-zinc-800 placeholder-zinc-400 rounded-xl p-3 text-sm transition-all focus:outline-none ${formErrors.email
                             ? "border-rose-500 focus:ring-1 focus:ring-rose-500"
                             : "border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary"
-                        }`}
+                          }`}
                       />
                       {formErrors.email && (
                         <p className="text-xs text-rose-500 font-medium flex items-center mt-1.5">
@@ -418,11 +408,10 @@ export default function ContactForm() {
                           min={getTomorrowString()}
                           value={formData.date}
                           onChange={handleInputChange}
-                          className={`w-full bg-cream-light border text-zinc-800 rounded-xl p-3 text-sm transition-all focus:outline-none ${
-                            formErrors.date
+                          className={`w-full bg-cream-light border text-zinc-800 rounded-xl p-3 text-sm transition-all focus:outline-none ${formErrors.date
                               ? "border-rose-500 focus:ring-1 focus:ring-rose-500"
                               : "border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary"
-                          }`}
+                            }`}
                         />
                         {formErrors.date && (
                           <p className="text-xs text-rose-500 font-medium flex items-center mt-1.5">
@@ -460,7 +449,7 @@ export default function ContactForm() {
                       id="message"
                       rows={2}
                       placeholder={
-                        requestType === "booking" 
+                        requestType === "booking"
                           ? "Specify any gates, pets, water spigot locations, or timing preferences..."
                           : "List grass type, estimated square footage, or hedge height to help us compile your quote..."
                       }
@@ -475,9 +464,8 @@ export default function ContactForm() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full inline-flex items-center justify-center space-x-2.5 bg-primary hover:bg-[#1b3a2d] text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all cursor-pointer active:scale-98 ${
-                        isSubmitting ? "opacity-90 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full inline-flex items-center justify-center space-x-2.5 bg-primary hover:bg-[#1b3a2d] text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all cursor-pointer active:scale-98 ${isSubmitting ? "opacity-90 cursor-not-allowed" : ""
+                        }`}
                     >
                       {isSubmitting ? (
                         <>
@@ -506,15 +494,15 @@ export default function ContactForm() {
                   <div className="bg-emerald-100 p-3 rounded-full mb-4">
                     <CheckCircle2 className="w-12 h-12 text-emerald-600 animate-pulse" />
                   </div>
-                  
+
                   <span className="font-mono text-[9px] uppercase tracking-widest text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded">
                     Ticket Logged
                   </span>
-                  
+
                   <h3 className="font-serif text-2xl font-bold text-dark-slate mt-3 mb-1">
                     {requestType === "booking" ? "Booking Requested" : "Estimate Logged"}
                   </h3>
-                  
+
                   <p className="text-zinc-700 leading-relaxed font-light max-w-md mb-6 text-xs sm:text-sm">
                     Thank you, <strong>{formData.fullName}</strong>. Your {requestType === "booking" ? "booking request" : "estimate query"} is received. We've sent a notification to your email: <strong>{formData.email}</strong>.
                   </p>
