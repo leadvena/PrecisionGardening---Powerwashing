@@ -2,18 +2,13 @@ import { Resend } from "resend";
 import { getBookings, saveBookings, Booking } from "./db";
 
 export default async function handler(req: any, res: any) {
-  // CORS Preflight
-  if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    return res.status(200).end();
-  }
-
-  // Ensure CORS headers for regular POST requests
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -25,7 +20,6 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // Generate unique booking reference
   const referenceId = "PRC-" + Math.floor(100000 + Math.random() * 900000);
 
   const newBooking: Booking = {
@@ -41,7 +35,6 @@ export default async function handler(req: any, res: any) {
     createdAt: new Date().toISOString(),
   };
 
-  // Save to Vercel KV / in-memory fallback
   const { bookings } = await getBookings();
   bookings.unshift(newBooking);
   const dbSaved = await saveBookings(bookings);
@@ -52,11 +45,17 @@ export default async function handler(req: any, res: any) {
 
   let emailSentSuccessfully = false;
 
-  if (resendApiKey && adminEmail) {
+  if (!resendApiKey) {
+    console.warn("Skipping email: RESEND_API_KEY missing.");
+  } else {
     try {
       const resend = new Resend(resendApiKey);
 
-      // 1. Send Email to Admin/Dispatcher
+      // DEMO MODE: Resend free tier only allows sending to your own verified email.
+      // Both admin alert AND customer confirmation go to adminEmail.
+      // TODO: swap customer confirmation `to: adminEmail` → `to: email` after domain verification.
+
+      // 1. Admin booking alert
       await resend.emails.send({
         from: "Precision Bookings <onboarding@resend.dev>",
         to: adminEmail,
@@ -108,68 +107,63 @@ export default async function handler(req: any, res: any) {
                 style="display: inline-block; background-color: #1b3a2d; color: #ffffff; font-size: 14px; font-weight: bold; text-decoration: none; padding: 14px 32px; border-radius: 8px; letter-spacing: 0.5px;">
                 🔐 Open Admin Dashboard
               </a>
-              <p style="font-size: 11px; color: #9ca3af; margin-top: 12px;">
-                You can approve, reject or mark this booking as completed in the dashboard.
-              </p>
             </div>
           </div>
         `,
       });
 
-      // 2. Send Email Confirmation to Client/Customer
-      try {
-        await resend.emails.send({
-          from: "Precision Bookings <onboarding@resend.dev>",
-          to: email,
-          subject: `📅 Your Precision Booking Request: ${referenceId}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff;">
-              <div style="background-color: #1e6fa8; color: #ffffff; padding: 20px; border-radius: 6px; text-align: center; margin-bottom: 20px;">
-                <h1 style="margin: 0; font-size: 22px; font-weight: bold;">Crew Booking Request Received!</h1>
-                <p style="margin: 5px 0 0 0; font-size: 12px; font-family: monospace; opacity: 0.9;">Reference Code: ${referenceId}</p>
-              </div>
-              
-              <p style="font-size: 15px; color: #334155;">Hi ${fullName},</p>
-              <p style="font-size: 15px; color: #334155; line-height: 1.6;">Thank you for scheduling with <strong>Precision Exterior Care</strong>. We have received your crew booking request and have held a pending slot for you.</p>
-              
-              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 15px; margin: 20px 0;">
-                <h3 style="color: #1e6fa8; margin-top: 0; font-size: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Pending Appointment Details</h3>
-                <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; color: #475569;">
-                  <tr>
-                    <td style="padding: 5px 0; font-weight: bold; width: 130px;">Service Target:</td>
-                    <td style="padding: 5px 0; color: #0f172a;">${serviceType}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 5px 0; font-weight: bold;">Requested Date:</td>
-                    <td style="padding: 5px 0; color: #1e6fa8; font-weight: bold;">${date}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 5px 0; font-weight: bold;">Target Window:</td>
-                    <td style="padding: 5px 0; color: #1e6fa8; font-weight: bold;">${timeSlot}</td>
-                  </tr>
-                </table>
-              </div>
-
-              <p style="font-size: 14px; color: #475569; line-height: 1.6;">Our Galway dispatch coordinator is adjusting current route densities. We will approve your slot and send an official confirmation email with your team's estimated arrival window within 12 working hours.</p>
-
-              <p style="font-size: 14px; color: #475569; line-height: 1.6;">If you have any active changes, gates to open, or pets to secure, please reply to this email or call us at <a href="tel:+353915550190" style="color: #1e6fa8; text-decoration: none; font-weight: bold;">+353 (91) 555 0190</a> invoking Booking Code <strong>${referenceId}</strong>.</p>
-              
-              <p style="margin-top: 30px; font-size: 14px; font-weight: bold; color: #1c1917;">Warm regards,<br><span style="font-weight: normal; color: #475569;">The Precision Care Dispatcher</span></p>
+      // 2. Customer confirmation — DEMO: sending to adminEmail instead of `email`
+      // TODO: swap `to: adminEmail` → `to: email` once you verify your domain in Resend
+      await resend.emails.send({
+        from: "Precision Bookings <onboarding@resend.dev>",
+        to: adminEmail, // <-- change to `email` after domain verification
+        subject: `[DEMO - Customer Copy] 📅 Booking Request: ${referenceId}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff;">
+            <div style="background-color: #f59e0b; color: #1c1917; padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 12px;">
+              <p style="margin: 0; font-size: 11px; font-weight: bold;">⚠️ DEMO MODE — This email would normally go to: ${email}</p>
             </div>
-          `
-        });
-      } catch (custErr) {
-        console.warn("Client booking confirmation email could not be sent (Resend sandbox limits default sending to verified emails only):", custErr);
-      }
+
+            <div style="background-color: #1e6fa8; color: #ffffff; padding: 20px; border-radius: 6px; text-align: center; margin-bottom: 20px;">
+              <h1 style="margin: 0; font-size: 22px; font-weight: bold;">Crew Booking Request Received!</h1>
+              <p style="margin: 5px 0 0 0; font-size: 12px; font-family: monospace; opacity: 0.9;">Reference Code: ${referenceId}</p>
+            </div>
+
+            <p style="font-size: 15px; color: #334155;">Hi ${fullName},</p>
+            <p style="font-size: 15px; color: #334155; line-height: 1.6;">Thank you for scheduling with <strong>Precision Exterior Care</strong>. We have received your booking request and have held a pending slot for you.</p>
+
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 15px; margin: 20px 0;">
+              <h3 style="color: #1e6fa8; margin-top: 0; font-size: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Pending Appointment Details</h3>
+              <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; color: #475569;">
+                <tr>
+                  <td style="padding: 5px 0; font-weight: bold; width: 130px;">Service Target:</td>
+                  <td style="padding: 5px 0; color: #0f172a;">${serviceType}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 5px 0; font-weight: bold;">Requested Date:</td>
+                  <td style="padding: 5px 0; color: #1e6fa8; font-weight: bold;">${date}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 5px 0; font-weight: bold;">Target Window:</td>
+                  <td style="padding: 5px 0; color: #1e6fa8; font-weight: bold;">${timeSlot}</td>
+                </tr>
+              </table>
+            </div>
+
+            <p style="font-size: 14px; color: #475569; line-height: 1.6;">We will approve your slot and send an official confirmation within 12 working hours.</p>
+            <p style="font-size: 14px; color: #475569; line-height: 1.6;">For changes, call <a href="tel:+353915550190" style="color: #1e6fa8; text-decoration: none; font-weight: bold;">+353 (91) 555 0190</a> with Booking Code <strong>${referenceId}</strong>.</p>
+
+            <p style="margin-top: 30px; font-size: 14px; font-weight: bold; color: #1c1917;">Warm regards,<br><span style="font-weight: normal; color: #475569;">The Precision Care Dispatcher</span></p>
+          </div>
+        `
+      });
 
       emailSentSuccessfully = true;
+
     } catch (err) {
-      console.error("Resend notification error inside book handler:", err);
-      // We do NOT return a 500 error here because the database save Succeeded.
-      // Failing to submit the email shouldn't make the user think their booking failed entirely.
+      console.error("Resend error in book handler:", err);
+      // Don't return 500 — booking was already saved to DB. Email failure ≠ booking failure.
     }
-  } else {
-    console.warn("Skipping email dispatches: ADMIN_EMAIL or RESEND_API_KEY environment variables are missing.");
   }
 
   console.log(`\n--- [BOOKING SUBMITTED] ---`);
